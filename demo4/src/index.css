@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Film grain texture overlay */
 @layer base {
   * {
     box-sizing: border-box;
@@ -15,8 +14,8 @@
   }
 
   body {
-    background-color: #111111;
-    color: #F7F0E6;
+    background-color: #FFFFFF;
+    color: #0F172A;
     font-family: 'DM Sans', system-ui, sans-serif;
     font-size: 15px;
     line-height: 1.6;
@@ -37,7 +36,7 @@
 }
 
 @layer components {
-  /* Film grain overlay effect */
+  /* Subtle film grain overlay */
   .film-grain::after {
     content: '';
     position: fixed;
@@ -47,13 +46,13 @@
     height: 100%;
     pointer-events: none;
     z-index: 9999;
-    opacity: 0.035;
+    opacity: 0.015;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
     background-repeat: repeat;
     background-size: 180px;
   }
 
-  /* Cinematic film-frame border decoration */
+  /* Blue-toned film frame border decoration */
   .film-frame {
     position: relative;
   }
@@ -64,12 +63,12 @@
     left: 8px;
     right: 8px;
     bottom: 8px;
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    border: 1px solid rgba(37, 99, 235, 0.18);
     pointer-events: none;
     z-index: 1;
   }
 
-  /* Gold underline accent */
+  /* Blue underline accent */
   .gold-line {
     display: inline-block;
     position: relative;
@@ -81,7 +80,7 @@
     left: 0;
     width: 60px;
     height: 2px;
-    background: linear-gradient(90deg, #D4AF37, transparent);
+    background: linear-gradient(90deg, #2563EB, transparent);
   }
 
   /* Scrollbar */
@@ -89,10 +88,10 @@
     width: 4px;
   }
   ::-webkit-scrollbar-track {
-    background: #111;
+    background: #EFF6FF;
   }
   ::-webkit-scrollbar-thumb {
-    background: #D4AF37;
+    background: #2563EB;
     border-radius: 2px;
   }
 
@@ -130,17 +129,17 @@
     transform: scale(1.06);
   }
 
-  /* Service package card glow on hover */
+  /* Service package card hover */
   .package-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   }
   .package-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 50px rgba(212, 175, 55, 0.12);
-    border-color: rgba(212, 175, 55, 0.5);
+    box-shadow: 0 20px 50px rgba(37, 99, 235, 0.12);
+    border-color: rgba(37, 99, 235, 0.5);
   }
   .package-card.featured {
-    border-color: #D4AF37;
+    border-color: #2563EB;
     position: relative;
   }
 
@@ -166,7 +165,7 @@
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 3.5rem;
     font-weight: 700;
-    color: #D4AF37;
+    color: #2563EB;
     line-height: 1;
   }
 
@@ -179,13 +178,13 @@
     position: absolute;
     top: 100%;
     right: 0;
-    background-color: #1A1A1A;
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    border-radius: 2px;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(37, 99, 235, 0.2);
+    border-radius: 4px;
     min-width: 190px;
     list-style: none;
     padding: 0.6rem 0;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+    box-shadow: 0 12px 40px rgba(15, 36, 71, 0.15);
     z-index: 1010;
   }
   .mobile-menu-wrapper:hover .mobile-dropdown,
@@ -203,7 +202,7 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: rgba(247, 240, 230, 0.7);
+    color: #475569;
     transition: color 0.2s, padding-left 0.2s;
     background: none;
     border: none;
@@ -212,23 +211,22 @@
   }
   .mobile-dropdown li a:hover,
   .mobile-dropdown li button:hover {
-    color: #D4AF37;
+    color: #2563EB;
     padding-left: 1.8rem;
+    background-color: #EFF6FF;
   }
 }
 
 @layer utilities {
-  .text-gold { color: #D4AF37; }
-  .text-ivory { color: #F7F0E6; }
-  .text-charcoal { color: #111111; }
-  .bg-charcoal { background-color: #111111; }
-  .bg-charcoal-800 { background-color: #1A1A1A; }
-  .bg-charcoal-700 { background-color: #222222; }
-  .border-gold { border-color: rgba(212, 175, 55, 0.35); }
-  .border-gold-solid { border-color: #D4AF37; }
+  .text-accent    { color: #2563EB; }
+  .text-navy      { color: #0F2447; }
+  .text-ink       { color: #0F172A; }
+  .bg-pearl       { background-color: #FFFFFF; }
+  .bg-pearl-100   { background-color: #F8FAFF; }
+  .bg-pearl-200   { background-color: #EFF6FF; }
+  .border-accent  { border-color: rgba(37, 99, 235, 0.3); }
 }
 
-/* Responsive overrides */
 @media (max-width: 768px) {
   .stat-num {
     font-size: 2.5rem;
