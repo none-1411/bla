@@ -1,0 +1,239 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Film grain texture overlay */
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #111111;
+    color: #F7F0E6;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+@layer components {
+  /* Film grain overlay effect */
+  .film-grain::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 180px;
+  }
+
+  /* Cinematic film-frame border decoration */
+  .film-frame {
+    position: relative;
+  }
+  .film-frame::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Gold underline accent */
+  .gold-line {
+    display: inline-block;
+    position: relative;
+  }
+  .gold-line::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, #D4AF37, transparent);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #111;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #D4AF37;
+    border-radius: 2px;
+  }
+
+  /* Section padding utility */
+  .section-pad {
+    padding: 6rem 0;
+  }
+
+  /* Hero carousel slide */
+  .carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+  }
+  .carousel-slide.active {
+    opacity: 1;
+  }
+
+  /* Portfolio masonry hover overlay */
+  .portfolio-card .overlay {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .portfolio-card:hover .overlay {
+    opacity: 1;
+  }
+  .portfolio-card img {
+    transition: transform 0.6s ease;
+  }
+  .portfolio-card:hover img {
+    transform: scale(1.06);
+  }
+
+  /* Service package card glow on hover */
+  .package-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .package-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(212, 175, 55, 0.12);
+    border-color: rgba(212, 175, 55, 0.5);
+  }
+  .package-card.featured {
+    border-color: #D4AF37;
+    position: relative;
+  }
+
+  /* FAQ accordion */
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .faq-answer.open {
+    max-height: 300px;
+  }
+
+  /* Marquee strip */
+  .marquee-strip {
+    display: flex;
+    width: max-content;
+    animation: marquee 35s linear infinite;
+  }
+
+  /* Number counter style */
+  .stat-num {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #D4AF37;
+    line-height: 1;
+  }
+
+  /* Mobile menu */
+  .mobile-menu-wrapper {
+    position: relative;
+  }
+  .mobile-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #1A1A1A;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 2px;
+    min-width: 190px;
+    list-style: none;
+    padding: 0.6rem 0;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+    z-index: 1010;
+  }
+  .mobile-menu-wrapper:hover .mobile-dropdown,
+  .mobile-menu-wrapper:focus-within .mobile-dropdown {
+    display: flex;
+    flex-direction: column;
+  }
+  .mobile-dropdown li a,
+  .mobile-dropdown li button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 0.75rem 1.4rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(247, 240, 230, 0.7);
+    transition: color 0.2s, padding-left 0.2s;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .mobile-dropdown li a:hover,
+  .mobile-dropdown li button:hover {
+    color: #D4AF37;
+    padding-left: 1.8rem;
+  }
+}
+
+@layer utilities {
+  .text-gold { color: #D4AF37; }
+  .text-ivory { color: #F7F0E6; }
+  .text-charcoal { color: #111111; }
+  .bg-charcoal { background-color: #111111; }
+  .bg-charcoal-800 { background-color: #1A1A1A; }
+  .bg-charcoal-700 { background-color: #222222; }
+  .border-gold { border-color: rgba(212, 175, 55, 0.35); }
+  .border-gold-solid { border-color: #D4AF37; }
+}
+
+/* Responsive overrides */
+@media (max-width: 768px) {
+  .stat-num {
+    font-size: 2.5rem;
+  }
+  .section-pad {
+    padding: 4rem 0;
+  }
+}
