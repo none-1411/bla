@@ -1,0 +1,28 @@
+# Dependencies
+**/node_modules/
+node_modules/
+
+# Production builds
+**/dist/
+dist/
+
+# IDE / System files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+.gemini/
+.system_generated/
+mcp.json
+mcp-servers/
+**/brain/
+brain/
+**/logs/
+logs/
+.git/
+*.log

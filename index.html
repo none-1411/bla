@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Studio Demos — Client Showcase Hub</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+    :root {
+      --bg-dark: #09090A;
+      --bg-card: #121214;
+      --text-light: #F4F4F6;
+      --text-muted: #8E8E95;
+      --accent: #B5A293;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Outfit', system-ui, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      padding: 4rem 2rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .hub-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 5rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 3rem;
+    }
+
+    .company-tag {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: 3.5rem;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 span {
+      font-style: italic;
+    }
+
+    .header-desc {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .demos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .demos-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    .demo-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .demo-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .card-num {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      opacity: 0.2;
+      margin-bottom: 1rem;
+    }
+
+    .demo-title {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .demo-title span {
+      font-size: 0.8rem;
+      font-family: var(--font-sans);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+    }
+
+    .demo-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 300;
+      margin-bottom: 2rem;
+      min-height: 4.8rem;
+    }
+
+    .demo-details {
+      border-top: 1px solid var(--border-color);
+      padding-top: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .details-row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .details-lbl {
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .details-val {
+      font-weight: 400;
+    }
+
+    /* Color Palette Swatch */
+    .swatch-group {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .launch-cmd {
+      background-color: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 0.8rem 1rem;
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: #92c5f9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .copy-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+
+    .copy-btn:hover {
+      color: var(--text-light);
+    }
+
+    .btn-hub-launch {
+      background-color: var(--text-light);
+      color: var(--bg-dark);
+      border: none;
+      border-radius: 4px;
+      padding: 1rem;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.2s;
+    }
+
+    .btn-hub-launch:hover {
+      background-color: var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 6rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+      padding-top: 3rem;
+    }
+  </style>
+  <script>
+    function copyCommand(text, btnId) {
+      navigator.clipboard.writeText(text);
+      const btn = document.getElementById(btnId);
+      const originalText = btn.innerText;
+      btn.innerText = 'Copied!';
+      btn.style.color = '#10B981';
+      setTimeout(() => {
+        btn.innerText = originalText;
+        btn.style.color = '';
+      }, 2000);
+    }
+  </script>
+</head>
+<body>
+  <div class="hub-container">
+    <header>
+      <div class="company-tag">Creative Design Studio</div>
+      <h1>Photography Studio <span>Demos</span></h1>
+      <p class="header-desc">
+        We have prepared five highly distinct visual and functional concepts for the photo studio client. Each is isolated in its own folder, utilizing professional React frontend layouts and unique CSS design systems.
+      </p>
+    </header>
+
+    <main class="demos-grid">
+      <!-- Demo 1 -->
+      <div class="demo-card">
+        <div>
+          <div class="card-num">01 /</div>
+          <h2 class="demo-title">Aether <span>Fine Art</span></h2>
+          <p class="demo-desc">
+            Minimalist and editorial layout designed for gallery exhibitions, fine-art prints, and portraiture. Large whitespace, quiet transitions, B&W filters.
+          </p>
+          
+          <div class="demo-details">
+            <div class="details-row">
+              <span class="details-lbl">Palettes</span>
+              <span class="details-val swatch-group">
+                <span class="swatch" style="background-color: #F4F1EA;" title="Linen"></span>
+                <span class="swatch" style="background-color: #1A1A1A;" title="Charcoal"></span>
+                <span class="swatch" style="background-color: #8C7B6E;" title="Bronze"></span>
+                Linen & Charcoal
+              </span>
+            </div>
+            <div class="details-row">
+              <span class="details-lbl">Typography</span>
+              <span class="details-val">Cormorant Garamond (Serif), Inter (Sans)</span>
+            </div>
+            <div class="details-row">
+              <span class="details-lbl">Core Tech</span>
+              <span class="details-val">Ambient Theme Toggle, Lightbox Zoom, EXIF Display</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+          <div class="launch-cmd">
+            <span>cd aether; npm run dev</span>
+            <button class="copy-btn" id="btn-copy-1" onclick="copyCommand('cd aether; npm run dev', 'btn-copy-1')">Copy</button>
+          </div>
+          <button class="btn-hub-launch" onclick="alert('To run this demo: \n1. Open your terminal\n2. Run the command copied below\n3. Click the local server link!')">Start Aether Demo</button>
+        </div>
+      </div>
+
+      <!-- Demo 2 -->
+      <div class="demo-card">
+        <div>
+          <div class="card-num">02 /</div>
+          <h2 class="demo-title">Everglow <span>Wedding</span></h2>
+          <p class="demo-desc">
+            Warm, welcoming, and storytelling focus tailored for weddings, lifestyle couples, and organic family portraits. Narrative timelines, warm tones.
+          </p>
+          
+          <div class="demo-details">
+            <div class="details-row">
+              <span class="details-lbl">Palettes</span>
+              <span class="details-val swatch-group">
+                <span class="swatch" style="background-color: #FAF6F0;" title="Ivory"></span>
+                <span class="swatch" style="background-color: #C38D75;" title="Terracotta"></span>
+                <span class="swatch" style="background-color: #8E9882;" title="Sage"></span>
+                Ivory, Rose & Sage
+              </span>
+            </div>
+            <div class="details-row">
+              <span class="details-lbl">Typography</span>
+              <span class="details-val">Lora (Warm Serif), Montserrat (Friendly Sans)</span>
+            </div>
+            <div class="details-row">
+              <span class="details-lbl">Core Tech</span>
+              <span class="details-val">Coverage Calculator Slider, Story Timeline, Reviews</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+          <div class="launch-cmd">
+            <span>cd everglow; npm run dev</span>
+            <button class="copy-btn" id="btn-copy-2" onclick="copyCommand('cd everglow; npm run dev', 'btn-copy-2')">Copy</button>
+          </div>
+          <button class="btn-hub-launch" onclick="alert('To run this demo: \n1. Open your terminal\n2. Run the command copied below\n3. Click the local server link!')">Start Everglow Demo</button>
+        </div>
+      </div>
+
+      <!-- Demo 3 -->
+      <div class="demo-card">
+        <div>
+          <div class="card-num">03 /</div>
+          <h2 class="demo-title">Prism <span>Commercial</span></h2>
+          <p class="demo-desc">
+            Sleek, geometric, corporate layouts for high-resolution product catalogs, architectural work, and agency campaigns. High contrast, sharp edges.
+          </p>
+          
+          <div class="demo-details">
+            <div class="details-row">
+              <span class="details-lbl">Palettes</span>
+              <span class="details-val swatch-group">
+                <span class="swatch" style="background-color: #0F172A;" title="Slate Dark"></span>
+                <span class="swatch" style="background-color: #2563EB;" title="Blue"></span>
+                <span class="swatch" style="background-color: #FFFFFF;" title="White"></span>
+                Slate Dark & Electric Blue
+              </span>
+            </div>
+            <div class="details-row">
+              <span class="details-lbl">Typography</span>
+              <span class="details-val">Space Grotesk (Geometric Sans), Roboto</span>
+            </div>
+            <div class="details-row">
+              <span class="details-lbl">Core Tech</span>
+              <span class="details-val">Interactive Before/After Slider, Meeting Grid Scheduler</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+          <div class="launch-cmd">
+            <span>cd prism; npm run dev</span>
+            <button class="copy-btn" id="btn-copy-3" onclick="copyCommand('cd prism; npm run dev', 'btn-copy-3')">Copy</button>
+          </div>
+          <button class="btn-hub-launch" onclick="alert('To run this demo: \n1. Open your terminal\n2. Run the command copied below\n3. Click the local server link!')">Start Prism Demo</button>
+        </div>
+      </div>
+
+      <!-- Demo 4 -->
+      <div class="demo-card">
+        <div>
+          <div class="card-num">04 /</div>
+          <h2 class="demo-title">Vanguard <span>Cinematic</span></h2>
+          <p class="demo-desc">
+            High-impact dark mode layout built for automotive shoots, sports action photography, and dramatic cinematic reels. Heavy blacks, copper highlights.
+          </p>
+          
+          <div class="demo-details">
+            <div class="details-row">
+              <span class="details-lbl">Palettes</span>
+              <span class="details-val swatch-group">
+                <span class="swatch" style="background-color: #0A0A0A;" title="Matte Black"></span>
+                <span class="swatch" style="background-color: #C87D55;" title="Copper"></span>
+                <span class="swatch" style="background-color: #151515;" title="Dark Gray"></span>
+                Matte Black & Copper Accent
+              </span>
+            </div>
+            <div class="details-row">
+              <span class="details-lbl">Typography</span>
+              <span class="details-val">Syne (Bold Display), Outfit (Contemporary Sans)</span>
+            </div>
+            <div class="details-row">
+              <span class="details-lbl">Core Tech</span>
+              <span class="details-val">Filterable Category Grid, Active Gear Explorer Specifications</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+          <div class="launch-cmd">
+            <span>cd vanguard; npm run dev</span>
+            <button class="copy-btn" id="btn-copy-4" onclick="copyCommand('cd vanguard; npm run dev', 'btn-copy-4')">Copy</button>
+          </div>
+          <button class="btn-hub-launch" onclick="alert('To run this demo: \n1. Open your terminal\n2. Run the command copied below\n3. Click the local server link!')">Start Vanguard Demo</button>
+        </div>
+      </div>
+
+      <!-- Demo 5 -->
+      <div class="demo-card">
+        <div>
+          <div class="card-num">05 /</div>
+          <h2 class="demo-title">YNOT Studio <span>Events</span></h2>
+          <p class="demo-desc">
+            Cinematic event storytelling modeled after YNOT Photography. Combines weddings, concert strobes, travel, and traditional life events under one warm, premium visual style.
+          </p>
+          
+          <div class="demo-details">
+            <div class="details-row">
+              <span class="details-lbl">Palettes</span>
+              <span class="details-val swatch-group">
+                <span class="swatch" style="background-color: #121315;" title="Charcoal"></span>
+                <span class="swatch" style="background-color: #C3A37D;" title="Gold/Brass"></span>
+                <span class="swatch" style="background-color: #FAF8F5;" title="Champagne"></span>
+                Charcoal, Brass & Champagne
+              </span>
+            </div>
+            <div class="details-row">
+              <span class="details-lbl">Typography</span>
+              <span class="details-val">Playfair Display (Serif), Outfit (Sans)</span>
+            </div>
+            <div class="details-row">
+              <span class="details-lbl">Core Tech</span>
+              <span class="details-val">Interactive Film Reel Lightbox, Google Star-Reviews, USP Blocks</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+          <div class="launch-cmd">
+            <span>cd ynot; npm run dev</span>
+            <button class="copy-btn" id="btn-copy-5" onclick="copyCommand('cd ynot; npm run dev', 'btn-copy-5')">Copy</button>
+          </div>
+          <button class="btn-hub-launch" onclick="alert('To run this demo: \n1. Open your terminal\n2. Run the command copied below\n3. Click the local server link!')">Start YNOT Demo</button>
+        </div>
+      </div>
+
+      <!-- Demo 6 -->
+      <div class="demo-card">
+        <div>
+          <div class="card-num">06 /</div>
+          <h2 class="demo-title">Cine (V1) <span>Scroll-Spy</span></h2>
+          <p class="demo-desc">
+            Luxurious dark & gold themed single-page site. Features an overlay loop hero, scroll-spy tabs, filterable portfolios, services, and a booking intake.
+          </p>
+          
+          <div class="demo-details">
+            <div class="details-row">
+              <span class="details-lbl">Palettes</span>
+              <span class="details-val swatch-group">
+                <span class="swatch" style="background-color: #060607;" title="Pitch Black"></span>
+                <span class="swatch" style="background-color: #D4AF37;" title="Metallic Gold"></span>
+                <span class="swatch" style="background-color: #F3E5AB;" title="Champagne"></span>
+                Obsidian Black & Metallic Gold
+              </span>
+            </div>
+            <div class="details-row">
+              <span class="details-lbl">Typography</span>
+              <span class="details-val">Cinzel (Cinematic Serif), Outfit (Sans)</span>
+            </div>
+            <div class="details-row">
+              <span class="details-lbl">Core Tech</span>
+              <span class="details-val">Looped Ambient Particles, Custom Theater Video Lightbox, Time Grid Scheduler</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+          <div class="launch-cmd">
+            <span>cd cine-photography; npm run dev</span>
+            <button class="copy-btn" id="btn-copy-6" onclick="copyCommand('cd cine-photography; npm run dev', 'btn-copy-6')">Copy</button>
+          </div>
+          <button class="btn-hub-launch" onclick="alert('To run this demo: \n1. Open your terminal\n2. Run the command copied below\n3. Click the local server link!')">Start Cine V1 Demo</button>
+        </div>
+      </div>
+
+      <!-- Demo 7 -->
+      <div class="demo-card">
+        <div>
+          <div class="card-num">07 /</div>
+          <h2 class="demo-title">Cine (V2) <span>Multi-Tab</span></h2>
+          <p class="demo-desc">
+            Luxurious dark & gold themed multi-page tab layout (demo2). Holds a large database of 24+ photos and videos neatly with search filters, page-views, and sub-tabs.
+          </p>
+          
+          <div class="demo-details">
+            <div class="details-row">
+              <span class="details-lbl">Palettes</span>
+              <span class="details-val swatch-group">
+                <span class="swatch" style="background-color: #050506;" title="Obsidian Black"></span>
+                <span class="swatch" style="background-color: #D4AF37;" title="Polished Gold"></span>
+                <span class="swatch" style="background-color: #8E8C86;" title="Brushed Gold"></span>
+                Satin Black & Polished Gold
+              </span>
+            </div>
+            <div class="details-row">
+              <span class="details-lbl">Typography</span>
+              <span class="details-val">Cinzel (Cinematic Serif), Outfit (Sans)</span>
+            </div>
+            <div class="details-row">
+              <span class="details-lbl">Core Tech</span>
+              <span class="details-val">State-Based Routing, Live Search, Type Toggles, Pagination Blocks</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+          <div class="launch-cmd">
+            <span>cd demo2; npm run dev</span>
+            <button class="copy-btn" id="btn-copy-7" onclick="copyCommand('cd demo2; npm run dev', 'btn-copy-7')">Copy</button>
+          </div>
+          <button class="btn-hub-launch" onclick="alert('To run this demo: \n1. Open your terminal\n2. Run the command copied below\n3. Click the local server link!')">Start Cine V2 Demo</button>
+        </div>
+      </div>
+
+      <!-- Demo 8 -->
+      <div class="demo-card">
+        <div>
+          <div class="card-num">08 /</div>
+          <h2 class="demo-title">Cine (V3) <span>Light Gold</span></h2>
+          <p class="demo-desc">
+            Luxurious light-mode version of the multi-page tab layout (demo3). Holds the same rich database of 24+ photos and videos on a clean white editorial layout.
+          </p>
+          
+          <div class="demo-details">
+            <div class="details-row">
+              <span class="details-lbl">Palettes</span>
+              <span class="details-val swatch-group">
+                <span class="swatch" style="background-color: #FAF8F5;" title="Platinum White"></span>
+                <span class="swatch" style="background-color: #D4AF37;" title="Polished Gold"></span>
+                <span class="swatch" style="background-color: #121316;" title="Charcoal Black"></span>
+                Platinum White & Polished Gold
+              </span>
+            </div>
+            <div class="details-row">
+              <span class="details-lbl">Typography</span>
+              <span class="details-val">Cinzel (Cinematic Serif), Outfit (Sans)</span>
+            </div>
+            <div class="details-row">
+              <span class="details-lbl">Core Tech</span>
+              <span class="details-val">White Editorial Style, Tailwind CSS, Media Filters, Scheduler Form</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+          <div class="launch-cmd">
+            <span>cd demo3; npm run dev</span>
+            <button class="copy-btn" id="btn-copy-8" onclick="copyCommand('cd demo3; npm run dev', 'btn-copy-8')">Copy</button>
+          </div>
+          <button class="btn-hub-launch" onclick="alert('To run this demo: \n1. Open your terminal\n2. Run the command copied below\n3. Click the local server link!')">Start Cine V3 Demo</button>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>© 2026 Creative Production Design Center. Client Preview Reference Documents.</p>
+    </footer>
+  </div>
+</body>
+</html>

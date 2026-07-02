@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-obsidian-950 text-white font-sans antialiased selection:bg-gold selection:text-black;
+  }
+  
+  h1, h2, h3, h4, h5 {
+    @apply font-serif tracking-widest uppercase;
+  }
+}
+
+/* Custom Particle Loop Animation */
+.dust-particle {
+  position: absolute;
+  background-color: rgba(212, 175, 55, 0.15);
+  border-radius: 50%;
+  filter: blur(1px);
+  animation: floatUp 16s infinite linear;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.55;
+  }
+  90% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translateY(-20vh) translateX(80px) scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* Scrollbar customizations */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050507;
+}
+::-webkit-scrollbar-thumb {
+  background: #D4AF37;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C5A059;
+}
