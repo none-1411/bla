@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Camera, Calendar as CalendarIcon, Clock, Users, ArrowRight, X, Play, Pause, ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import { Camera, Calendar as CalendarIcon, Clock, Users, ArrowRight, X, Play, Pause, ChevronLeft, ChevronRight, Check, MoreVertical } from 'lucide-react';
 
 const PORTFOLIO_DATA = [
   {
@@ -255,6 +255,20 @@ function App() {
                 </a>
               </li>
             </ul>
+
+            {/* Mobile Three-Dot Dropdown */}
+            <div className="mobile-menu-wrapper">
+              <button className="mobile-menu-trigger" aria-label="Toggle Menu">
+                <MoreVertical size={24} />
+              </button>
+              <ul className="mobile-dropdown">
+                <li><a href="#home" onClick={() => setActiveTab('home')}>Home</a></li>
+                <li><a href="#about" onClick={() => setActiveTab('about')}>About</a></li>
+                <li><a href="#portfolio" onClick={() => setActiveTab('portfolio')}>Portfolio</a></li>
+                <li><a href="#services" onClick={() => setActiveTab('services')}>Services</a></li>
+                <li><a href="#contact" onClick={() => setActiveTab('contact')}>Contact</a></li>
+              </ul>
+            </div>
           </nav>
 
           <a href="#contact">

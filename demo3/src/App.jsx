@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Camera, Calendar, Clock, Users, ArrowRight, X, Play, Pause, ChevronLeft, ChevronRight, Check, Search, ShieldCheck, HelpCircle } from 'lucide-react';
+import { Camera, Calendar, Clock, Users, ArrowRight, X, Play, Pause, ChevronLeft, ChevronRight, Check, Search, ShieldCheck, HelpCircle, MoreVertical } from 'lucide-react';
 
 const MEDIA_DATABASE = [
   {
@@ -405,7 +405,7 @@ function App() {
             </div>
           </div>
 
-          <nav className="flex gap-2">
+          <nav className="hidden md:flex gap-2">
             {['home', 'about', 'portfolio', 'services', 'contact'].map((tab) => (
               <button
                 key={tab}
@@ -420,6 +420,28 @@ function App() {
               </button>
             ))}
           </nav>
+
+          {/* Mobile Three-Dot Hover Dropdown */}
+          <div className="relative group md:hidden">
+            <button className="text-gold p-2 hover:opacity-80 transition-all" aria-label="Toggle Menu">
+              <MoreVertical size={24} />
+            </button>
+            <div className="absolute right-0 top-full mt-1 w-44 bg-white border border-zinc-200 rounded-sm shadow-xl hidden group-hover:flex flex-col py-1.5 z-50 animate-fadeIn">
+              {['home', 'about', 'portfolio', 'services', 'contact'].map((tab) => (
+                <button
+                  key={tab}
+                  className={`w-full text-left px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-all ${
+                    activePage === tab 
+                      ? 'text-gold bg-gold/5' 
+                      : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50'
+                  }`}
+                  onClick={() => { setActivePage(tab); setCurrentPage(1); }}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+          </div>
 
           <button 
             className="bg-gold text-black text-xs font-bold uppercase tracking-widest px-5 py-2.5 rounded-sm hover:bg-zinc-900 hover:text-white hover:shadow-[0_0_15px_rgba(0,0,0,0.15)] transition-all"
@@ -463,13 +485,13 @@ function App() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-zinc-50 via-transparent to-transparent"></div>
               
-              <div className="relative z-20 px-12 max-w-2xl">
+              <div className="relative z-20 px-6 md:px-12 max-w-2xl">
                 <span className="text-xs font-bold uppercase tracking-[0.25em] text-gold mb-3 block">Cinematic Light & Shadow</span>
-                <h1 className="text-5xl font-serif tracking-widest text-zinc-900 leading-none mb-6">Stories Written In Light.</h1>
+                <h1 className="text-3xl md:text-5xl font-serif tracking-widest text-zinc-900 leading-none mb-6">Stories Written In Light.</h1>
                 <p className="text-sm font-light text-zinc-600 leading-relaxed mb-8">
                   We are premium visual storytellers documenting weddings, concerts, and life ceremonies. We reject rigid, stiff poses to freeze the raw, warm, unscripted chemistry of your milestones.
                 </p>
-                <div className="flex gap-4">
+                <div className="flex flex-col sm:flex-row gap-4">
                   <button className="bg-gold text-black text-xs font-bold uppercase tracking-widest px-6 py-3 hover:bg-zinc-900 hover:text-white transition-all" onClick={() => setActivePage('portfolio')}>
                     Enter Showcase
                   </button>
@@ -860,8 +882,8 @@ function App() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-              {/* Left list */}
-              <div className="lg:col-span-4 flex flex-col gap-3">
+              {/* Left Selector list */}
+              <div className="lg:col-span-4 flex flex-row overflow-x-auto pb-4 lg:pb-0 lg:flex-col gap-3">
                 {SERVICES_DATA.map((s) => (
                   <button
                     key={s.id}

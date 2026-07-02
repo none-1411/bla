@@ -1330,6 +1330,110 @@ a {
   }
 }
 
+/* Mobile Three-Dot Navigation Menu & Responsive Grid Overrides */
+.mobile-menu-wrapper {
+  display: none;
+  position: relative;
+}
+
+.mobile-menu-trigger {
+  background: none;
+  border: none;
+  color: var(--cine-gold);
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+}
+
+.mobile-menu-trigger:hover {
+  opacity: 0.8;
+}
+
+.mobile-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: var(--cine-card);
+  border: 1px solid var(--cine-gold);
+  border-radius: 2px;
+  min-width: 180px;
+  list-style: none;
+  padding: 0.8rem 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+  z-index: 1010;
+}
+
+/* Hover triggers dropdown vertical items */
+.mobile-menu-wrapper:hover .mobile-dropdown,
+.mobile-menu-wrapper:focus-within .mobile-dropdown {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-dropdown li {
+  width: 100%;
+}
+
+.mobile-dropdown a {
+  display: block;
+  padding: 0.75rem 1.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.7);
+  transition: all var(--transition-fast);
+}
+
+.mobile-dropdown a:hover {
+  color: var(--cine-gold);
+  background-color: rgba(212, 175, 55, 0.05);
+  padding-left: 1.6rem;
+}
+
+@media (max-width: 900px) {
+  .cine-nav {
+    display: none !important;
+  }
+  .mobile-menu-wrapper {
+    display: block;
+  }
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .portfolio-grid-cine {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-title-h1 {
+    font-size: 2.4rem;
+    margin-bottom: 1.5rem;
+  }
+  .hero-subtitle-p {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+  .scheduler-form-box {
+    padding: 2.2rem 1.2rem;
+  }
+  .form-row-cine {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .service-card-item {
+    padding: 2rem 1.5rem;
+  }
+}
+
 /* General Animations */
 @keyframes fadeIn {
   from { opacity: 0; }
