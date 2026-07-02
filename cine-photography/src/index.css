@@ -1402,6 +1402,9 @@ a {
   .mobile-menu-wrapper {
     display: block;
   }
+  .header-book-cta {
+    display: none !important;
+  }
   .about-grid {
     grid-template-columns: 1fr;
     gap: 3rem;

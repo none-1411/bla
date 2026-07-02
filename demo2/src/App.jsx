@@ -444,7 +444,7 @@ function App() {
           </div>
 
           <button 
-            className="bg-gold text-black text-xs font-bold uppercase tracking-widest px-5 py-2.5 rounded-sm hover:bg-white hover:shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-all"
+            className="hidden md:block bg-gold text-black text-xs font-bold uppercase tracking-widest px-5 py-2.5 rounded-sm hover:bg-white hover:shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-all"
             onClick={() => setActivePage('contact')}
           >
             Book Session
